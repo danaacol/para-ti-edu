@@ -324,3 +324,36 @@ css-doodle.background-hearts.dimmed {
   touch-action: none;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
 }
+
+/* 1. Reducir texto general */
+body {
+  font-size: 14px; /* Un poco más pequeño para que no ocupe tanto */
+}
+
+h1, h2 {
+  font-size: 1.4rem !important; /* Títulos más compactos */
+}
+
+/* 2. Reducir la Portada del Álbum */
+.cover-art {
+  width: min(240px, 65vw) !important;
+  height: min(240px, 65vw) !important;
+}
+
+/* 3. Reducir el Sobre */
+.envelope, .envelope-wrapper {
+  transform: scale(0.8); /* Encoge el sobre un 20% manteniendo proporciones */
+}
+
+/* 4. Reducir Botones */
+button, .btn {
+  font-size: 0.9rem !important;
+  padding: 8px 18px !important;
+  max-width: 220px;
+}
+
+/* 5. Reducir tamaño de Tarjetas / Recuerdos (Polaroids y Vales) */
+.card, .polaroid, .scratch-card {
+  max-width: 280px !important;
+  max-height: 400px !important;
+}
