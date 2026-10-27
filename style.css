@@ -207,22 +207,22 @@ css-doodle.background-hearts.dimmed {
 
 /* Polaroid PNG dentro del sobre */
 .polaroid-img {
-  width: min(300px, 36vw);
+  width: min(240px, 28vw);
   height: auto;
-  max-height: 460px;
+  max-height: 380px;
   object-fit: contain;
   filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
   display: block;
 }
 
-/* Carta escrita */
+/* Carta escrita / Vales */
 .letter-card {
   background-color: #FFFDF9;
   color: #3B0A11;
-  padding: 30px 25px;
+  padding: 22px 18px;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
-  width: min(340px, 36vw);
+  width: min(260px, 30vw);
   text-align: center;
 }
 
@@ -275,32 +275,32 @@ css-doodle.background-hearts.dimmed {
   position: relative;
 }
 
-/* Polaroid en el modal */
+/* Polaroid en el modal al hacer clic */
 .modal-container .polaroid-img {
-  max-width: 90vw !important;
-  max-height: 85vh !important;
+  max-width: 75vw !important;
+  max-height: 70vh !important;
   width: auto !important;
   height: auto !important;
   object-fit: contain !important;
   filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9));
 }
 
-/* Carta escrita en el modal */
+/* Carta escrita / Vale en el modal al hacer clic */
 .modal-container .letter-card {
-  width: min(650px, 90vw) !important;
-  padding: 50px 40px !important;
+  width: min(500px, 80vw) !important;
+  padding: 35px 25px !important;
   border-radius: 16px !important;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9) !important;
 }
 
 .modal-container .letter-card h2 {
-  font-size: 2.2rem !important;
-  margin-bottom: 20px !important;
+  font-size: 1.8rem !important;
+  margin-bottom: 16px !important;
 }
 
 .modal-container .letter-card p {
-  font-size: 1.35rem !important;
-  line-height: 1.7 !important;
+  font-size: 1.15rem !important;
+  line-height: 1.6 !important;
 }
 
 /* ==========================================
