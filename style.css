@@ -1,0 +1,326 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #330a10;
+  font-family: 'Montserrat', sans-serif;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Contenedores principales */
+#text-container, #music-container, #letter-container {
+  max-width: 1100px;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+#text-container.visible, #music-container.visible, #letter-container.visible {
+  opacity: 1;
+}
+
+#slide-text {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 400;
+  color: #F4E8D1;
+  line-height: 1.5;
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Portada del álbum 500x500px */
+.cover-art {
+  width: min(600px, 80vw);
+  height: min(600px, 80vw);
+  object-fit: cover;
+  border-radius: 24px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+}
+
+/* Botones */
+.nav-btn {
+  background-color: #F4E8D1;
+  color: #3B0A11;
+  border: none;
+  padding: 16px 42px;
+  font-size: 1.2rem;
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.nav-btn:hover {
+  transform: scale(1.08);
+  background-color: #E6D4B5;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Fondo animado de corazones */
+css-doodle.background-hearts {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+css-doodle.background-hearts.active {
+  opacity: 0.85;
+}
+
+css-doodle.background-hearts.dimmed {
+  opacity: 0.25 !important;
+}
+
+/* ==========================================
+   ESTILOS DEL SOBRE (1000PX) Y TARJETAS
+   ========================================== */
+
+.envelope-wrapper {
+  position: relative;
+  width: min(1000px, 92vw);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pulse {
+  animation: pulse-anim 2s infinite ease-in-out;
+}
+
+@keyframes pulse-anim {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+.envelope-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Capas del sobre */
+.env-layer {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.env-back {
+  position: relative;
+  z-index: 1;
+}
+
+.env-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.env-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Posicionado dentro del sobre */
+.stack-item {
+  position: absolute;
+  top: 28%;
+  left: 50%;
+  transform: translate(-50%, 0) rotate(var(--rot, 0deg)) translateX(var(--offset-x, 0px));
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease;
+  cursor: pointer;
+  user-select: none;
+}
+
+.stack-item:hover {
+  transform: translate(-50%, -20px) rotate(var(--rot, 0deg)) translateX(var(--offset-x, 0px)) scale(1.04);
+}
+
+/* Cubierta sin emojis para ocultar el texto de los Vales */
+.stack-item[data-scratch="true"]::after {
+  content: 'VALE SORPRESA';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #7A141E, #3B0A11);
+  color: #F4E8D1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+  border: 2px solid #F4E8D1;
+  pointer-events: none;
+}
+
+/* ESTADO DESCARTADO */
+.stack-item.discarded {
+  z-index: 0 !important;
+  transform: translate(-140vw, 60px) rotate(-25deg) scale(0.8) !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+/* Polaroid PNG dentro del sobre */
+.polaroid-img {
+  width: min(340px, 36vw);
+  height: auto;
+  max-height: 460px;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
+  display: block;
+}
+
+/* Carta escrita */
+.letter-card {
+  background-color: #FFFDF9;
+  color: #3B0A11;
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.45);
+  width: min(340px, 36vw);
+  text-align: center;
+}
+
+.letter-card h2 {
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #85131D;
+}
+
+.letter-card p {
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+/* ==========================================
+   VISOR MODAL / PANTALLA COMPLETA
+   ========================================== */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-container {
+  max-width: 95vw;
+  max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Polaroid en el modal */
+.modal-container .polaroid-img {
+  max-width: 90vw !important;
+  max-height: 85vh !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.9));
+}
+
+/* Carta escrita en el modal */
+.modal-container .letter-card {
+  width: min(650px, 90vw) !important;
+  padding: 50px 40px !important;
+  border-radius: 16px !important;
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.9) !important;
+}
+
+.modal-container .letter-card h2 {
+  font-size: 2.2rem !important;
+  margin-bottom: 20px !important;
+}
+
+.modal-container .letter-card p {
+  font-size: 1.35rem !important;
+  line-height: 1.7 !important;
+}
+
+/* ==========================================
+   ESTILOS DE LA CAPA RASCA Y GANA
+   ========================================== */
+
+.scratch-wrapper {
+  position: relative;
+  display: inline-block;
+  user-select: none;
+}
+
+.scratch-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: crosshair;
+  border-radius: 8px;
+  touch-action: none;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+}

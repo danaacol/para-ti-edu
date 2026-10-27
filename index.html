@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para ti, Edu <3</title>
+
+  <!-- Favicon con emoji de estrella -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⭐</text></svg>">
+
+  <!-- Librería de CSS Doodle -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/css-doodle/0.38.4/css-doodle.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Archivo de Sonido de Papel -->
+  <audio id="paper-sound" src="assets/Sonido_Papel.mp3" preload="auto"></audio>
+
+  <!-- Fondo animado de corazones -->
+  <css-doodle class="background-hearts">
+    :doodle {
+      @grid: 10 / 100%; 
+    }
+    
+    background: @pick(
+      #7A141E, 
+      #F4A6B8, 
+      #D97280, 
+      #A32E3E, 
+      #F2B4C1  
+    );
+
+    transform: translate(
+      @rand(-50vw, 50vw),
+      @rand(-50vh, 50vh)
+    );
+
+    @size: 4vmin;
+    @shape: heart;
+    @place-cell: 50% 50%;
+
+    animation-name: explosion;
+    animation-iteration-count: infinite;
+    animation-direction: reverse;
+    animation-duration: calc(@rand(2s, 5s, .1));
+    animation-delay: calc(@rand(-5s, -1s, .1));
+    animation-timing-function: cubic-bezier(.84, .02, 1, 1);
+
+    @keyframes explosion {
+      0% { opacity: 0; }
+      70% { opacity: 1; }
+      100% { transform: translate(0, 0); }
+    }
+  </css-doodle>
+
+  <!-- Contenedor Único de Frases (Para inicio y final) -->
+  <div id="text-container" class="visible">
+    <h1 id="slide-text">Hola Amor</h1>
+    <button id="next-text-btn" class="nav-btn">SIGUIENTE</button>
+  </div>
+
+  <!-- Contenedor de Música -->
+  <div id="music-container" class="hidden">
+    <img src="assets/Star_Shopping_Cover.jpg" alt="Star Shopping - Lil Peep" class="cover-art">
+    <button id="play-btn" class="nav-btn">▶ PLAY</button>
+    <button id="next-music-btn" class="nav-btn hidden">SIGUIENTE</button>
+    <audio id="bg-music" src="assets/Star_Shopping.mp3" loop></audio>
+  </div>
+
+  <!-- Contenedor de la Carta y Sobre -->
+  <div id="letter-container" class="hidden">
+    
+    <!-- Sobre Cerrado -->
+    <div id="envelope-closed" class="envelope-wrapper">
+      <img src="assets/sobre_CERRADO.png" alt="Sobre Cerrado" class="envelope-img pulse">
+    </div>
+
+    <!-- Sobre Abierto con Capas e Ítems apilados -->
+    <div id="envelope-open" class="envelope-wrapper hidden">
+      <!-- Capa Trasera -->
+      <img src="assets/sobre_ABIERTO_tras.png" alt="Sobre Trasera" class="env-layer env-back">
+
+      <div id="envelope-content" class="env-content">
+        
+        <!-- 1. Tira Fotomatón -->
+        <div class="stack-item">
+          <img src="assets/Polaroid.png" alt="Tira Fotomatón" class="polaroid-img">
+        </div>
+
+        <!-- 2. Foto 1 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (1).PNG" alt="Recuerdo 1" class="polaroid-img">
+        </div>
+
+        <!-- 3. Versículo 1 -->
+        <div class="stack-item">
+          <img src="assets/versiculo (1).png" alt="Versículo 1" class="polaroid-img">
+        </div>
+
+        <!-- 4. Vale 1 -->
+        <div class="stack-item" data-scratch="true">
+          <img src="assets/Vale_1.PNG" alt="Vale 1" class="polaroid-img">
+        </div>
+
+        <!-- 5. Foto 2 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (2).PNG" alt="Recuerdo 2" class="polaroid-img">
+        </div>
+
+        <!-- 6. Foto 3 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (3).PNG" alt="Recuerdo 3" class="polaroid-img">
+        </div>
+
+        <!-- 7. Versículo 2 -->
+        <div class="stack-item">
+          <img src="assets/versiculo (2).png" alt="Versículo 2" class="polaroid-img">
+        </div>
+
+        <!-- 8. Foto 4 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (4).PNG" alt="Recuerdo 4" class="polaroid-img">
+        </div>
+
+        <!-- 9. Vale 2 -->
+        <div class="stack-item" data-scratch="true">
+          <img src="assets/Vale_2.PNG" alt="Vale 2" class="polaroid-img">
+        </div>
+
+        <!-- 10. Foto 5 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (5).PNG" alt="Recuerdo 5" class="polaroid-img">
+        </div>
+
+        <!-- 11. Foto 6 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (6).PNG" alt="Recuerdo 6" class="polaroid-img">
+        </div>
+
+        <!-- 12. Versículo 3 -->
+        <div class="stack-item">
+          <img src="assets/versiculo (3).png" alt="Versículo 3" class="polaroid-img">
+        </div>
+
+        <!-- 13. Foto 7 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (7).PNG" alt="Recuerdo 7" class="polaroid-img">
+        </div>
+
+        <!-- 14. Foto 8 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (8).PNG" alt="Recuerdo 8" class="polaroid-img">
+        </div>
+
+        <!-- 15. Vale 3 -->
+        <div class="stack-item" data-scratch="true">
+          <img src="assets/Vale_3.PNG" alt="Vale 3" class="polaroid-img">
+        </div>
+
+        <!-- 16. Foto 9 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (9).PNG" alt="Recuerdo 9" class="polaroid-img">
+        </div>
+
+        <!-- 17. Foto 10 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (10).PNG" alt="Recuerdo 10" class="polaroid-img">
+        </div>
+
+        <!-- 18. Versículo 4 -->
+        <div class="stack-item">
+          <img src="assets/versiculo (4).png" alt="Versículo 4" class="polaroid-img">
+        </div>
+
+        <!-- 19. Foto 11 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (11).PNG" alt="Recuerdo 11" class="polaroid-img">
+        </div>
+
+        <!-- 20. Foto 12 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (12).PNG" alt="Recuerdo 12" class="polaroid-img">
+        </div>
+
+        <!-- 21. Vale 4 -->
+        <div class="stack-item" data-scratch="true">
+          <img src="assets/Vale_4.PNG" alt="Vale 4" class="polaroid-img">
+        </div>
+
+        <!-- 22. Foto 13 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (13).PNG" alt="Recuerdo 13" class="polaroid-img">
+        </div>
+
+        <!-- 23. Foto 14 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (14).PNG" alt="Recuerdo 14" class="polaroid-img">
+        </div>
+
+        <!-- 24. Foto 15 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (15).PNG" alt="Recuerdo 15" class="polaroid-img">
+        </div>
+
+        <!-- 25. Foto 16 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (16).PNG" alt="Recuerdo 16" class="polaroid-img">
+        </div>
+
+        <!-- 26. Vale 5 -->
+        <div class="stack-item" data-scratch="true">
+          <img src="assets/Vale_5.PNG" alt="Vale 5" class="polaroid-img">
+        </div>
+
+        <!-- 27. Foto 17 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (17).PNG" alt="Recuerdo 17" class="polaroid-img">
+        </div>
+
+        <!-- 28. Foto 18 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (18).PNG" alt="Recuerdo 18" class="polaroid-img">
+        </div>
+
+        <!-- 29. Foto 19 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (19).PNG" alt="Recuerdo 19" class="polaroid-img">
+        </div>
+
+        <!-- 30. Foto 20 -->
+        <div class="stack-item">
+          <img src="assets/Polaroid_Individual (20).PNG" alt="Recuerdo 20" class="polaroid-img">
+        </div>
+
+        <!-- 31. CARTA ESCRITA (EL FINAL) -->
+        <div class="stack-item">
+          <img src="assets/carta_escrita.png" alt="Carta Escrita" class="polaroid-img">
+        </div>
+
+      </div>
+
+      <!-- Capa Delantera (Bolsillo) -->
+      <img src="assets/sobre_ABIERTO_delant.png" alt="Sobre Frente" class="env-layer env-front">
+    </div>
+
+  </div>
+
+  <!-- VISOR EN PANTALLA COMPLETA (MODAL) -->
+  <div id="preview-modal" class="modal-overlay hidden">
+    <div id="modal-container" class="modal-container"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
